@@ -18,6 +18,11 @@ PRODUCT_DATABASE = {
     }
 }
 
+@app.route('/tiktok7EYftTEiO0Bjeab7ZEjliTCpca1oOnbT.txt', methods=['GET'])
+def verify_tiktok_domain():
+    # PASTE THE CODE STRING YOU FOUND INSIDE THE TXT FILE BETWEEN THESE QUOTES:
+    return "7EYftTEiO0Bjeab7ZEjliTCpca1oOnbT", 200
+
 @app.route('/tiktok-webhook', methods=['POST'])
 def handle_tiktok_events():
     """Listens for live comments on your TikTok videos"""
@@ -44,7 +49,6 @@ def handle_tiktok_events():
                     break
             
             print(f"Trigger found! Sending link {matched_link} to TikTok user {user_openid}")
-            # Here your code will call TikTok's send message API using their direct tokens
             
     return jsonify({"status": "success"}), 200
 
