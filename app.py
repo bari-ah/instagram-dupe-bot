@@ -1,53 +1,27 @@
 import os
-import requests
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# Simple data lookup for your MVP
-PRODUCT_DATABASE = {
-    "drunkelephant": {
-        "name": "Drunk Elephant Protini Cream",
-        "dupe": "The Ordinary Natural Moisturizing Factors",
-        "link": "https://amzn.to/3YourAffiliateLink1"
-    },
-    "soldejaneiro": {
-        "name": "Sol de Janeiro Cheirosa 68",
-        "dupe": "In The Stars by Bath & Body Works",
-        "link": "https://amzn.to/3YourAffiliateLink2"
-    }
-}
+# 1. The main Home Route (Fixes 404 if TikTok tests the base domain)
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    return "DupeBot Backend is running successfully!", 200
+
+# 2. Your TikTok Verification File Route
 @app.route('/tiktokKDLcbFzR3QjRYcYdQIigJOB2Fgiz4WSm.txt', methods=['GET'])
 def verify_tiktok_domain():
     return "tiktok-developers-site-verification=KDLcbFzR3QjRYcYdQIigJOB2Fgiz4WSm", 200
 
-@app.route('/tiktok-webhook', methods=['POST'])
+# 3. The Live Webhook Data Route
+@app.route('/tiktok-webhook', methods=['GET', 'POST'])
 def handle_tiktok_events():
-    """Listens for live comments on your TikTok videos"""
-    data = request.json
-    
-    # Verify this is a comment event from TikTok
-    if data and data.get('event') == 'video.comment.create':
-        content = data.get('content', {})
-        comment_text = content.get('text', '').lower()
-        user_openid = content.get('user_openid') # Unique identifier of the commenter
+    # If TikTok sends a verification ping, reply with success
+    if request.method == 'GET':
+        return "Webhook Endpoint Active", 200
         
-        # Keywords to scan for
-        trigger_words = ["dupe", "link", "cheap", "alternative"]
-        if any(word in comment_text for word in trigger_words):
-            
-            # Find matching dupe
-            matched_link = "https://amzn.to/GeneralListLink"
-            matched_dupe = "our budget alternative list"
-            
-            for key, item in PRODUCT_DATABASE.items():
-                if key in comment_text:
-                    matched_link = item['link']
-                    matched_dupe = item['dupe']
-                    break
-            
-            print(f"Trigger found! Sending link {matched_link} to TikTok user {user_openid}")
-            
+    data = request.json
+    print("Received webhook event:", data)
     return jsonify({"status": "success"}), 200
 
 if __name__ == '__main__':
