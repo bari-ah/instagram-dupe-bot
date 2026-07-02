@@ -17,11 +17,9 @@ PRODUCT_DATABASE = {
         "link": "https://amzn.to/3YourAffiliateLink2"
     }
 }
-
-@app.route('/tiktok7EYftTEiO0Bjeab7ZEjliTCpca1oOnbT.txt', methods=['GET'])
+@app.route('/tiktokKDLcbFzR3QjRYcYdQIigJOB2Fgiz4WSm.txt', methods=['GET'])
 def verify_tiktok_domain():
-    # PASTE THE CODE STRING YOU FOUND INSIDE THE TXT FILE BETWEEN THESE QUOTES:
-    return "7EYftTEiO0Bjeab7ZEjliTCpca1oOnbT", 200
+    return "tiktok-developers-site-verification=KDLcbFzR3QjRYcYdQIigJOB2Fgiz4WSm", 200
 
 @app.route('/tiktok-webhook', methods=['POST'])
 def handle_tiktok_events():
