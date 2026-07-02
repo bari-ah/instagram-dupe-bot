@@ -8,12 +8,17 @@ app = Flask(__name__)
 def home():
     return "DupeBot Backend is running successfully!", 200
 
-# 2. Your TikTok Verification File Route
+# 2. NEW TikTok Verification File Route (From image_895c36.png)
+@app.route('/tiktok7EYftTEiO0Bjeab7ZEjliTCpca1oOnbT.txt', methods=['GET'])
+def verify_tiktok_domain_new():
+    return "tiktok-developers-site-verification=7EYftTEiO0Bjeab7ZEjliTCpca1oOnbT", 200
+
+# 3. Old TikTok Verification File Route (Keeping just in case)
 @app.route('/tiktokKDLcbFzR3QjRYcYdQIigJOB2Fgiz4WSm.txt', methods=['GET'])
-def verify_tiktok_domain():
+def verify_tiktok_domain_old():
     return "tiktok-developers-site-verification=KDLcbFzR3QjRYcYdQIigJOB2Fgiz4WSm", 200
 
-# 3. The Live Webhook Data Route
+# 4. The Live Webhook Data Route
 @app.route('/tiktok-webhook', methods=['GET', 'POST'])
 def handle_tiktok_events():
     if request.method == 'GET':
@@ -23,17 +28,17 @@ def handle_tiktok_events():
     print("Received webhook event:", data)
     return jsonify({"status": "success"}), 200
 
-# 4. Terms of Service Page (With TikTok Verification)
+# 5. Terms of Service Page
 @app.route('/terms', methods=['GET'])
 def terms_of_service():
     return """
     <html>
     <head>
         <title>Terms of Service</title>
-        <!-- tiktok-developers-site-verification=KDLcbFzR3QjRYcYdQIigJOB2Fgiz4WSm -->
+        <!-- tiktok-developers-site-verification=7EYftTEiO0Bjeab7ZEjliTCpca1oOnbT -->
     </head>
     <body style="font-family: Arial, sans-serif; margin: 40px; line-height: 1.6;">
-        <p style="color: #ccc; font-size: 10px;">tiktok-developers-site-verification=KDLcbFzR3QjRYcYdQIigJOB2Fgiz4WSm</p>
+        <p style="color: #ccc; font-size: 10px;">tiktok-developers-site-verification=7EYftTEiO0Bjeab7ZEjliTCpca1oOnbT</p>
         <h1>Terms of Service</h1>
         <p>Welcome to DupeBot Backend. By interacting with our automated TikTok service, you agree to these basic terms.</p>
         <h3>1. Service Description</h3>
@@ -46,17 +51,17 @@ def terms_of_service():
     </html>
     """, 200
 
-# 5. Privacy Policy Page (With TikTok Verification)
+# 6. Privacy Policy Page
 @app.route('/privacy', methods=['GET'])
 def privacy_policy():
     return """
     <html>
     <head>
         <title>Privacy Policy</title>
-        <!-- tiktok-developers-site-verification=KDLcbFzR3QjRYcYdQIigJOB2Fgiz4WSm -->
+        <!-- tiktok-developers-site-verification=7EYftTEiO0Bjeab7ZEjliTCpca1oOnbT -->
     </head>
     <body style="font-family: Arial, sans-serif; margin: 40px; line-height: 1.6;">
-        <p style="color: #ccc; font-size: 10px;">tiktok-developers-site-verification=KDLcbFzR3QjRYcYdQIigJOB2Fgiz4WSm</p>
+        <p style="color: #ccc; font-size: 10px;">tiktok-developers-site-verification=7EYftTEiO0Bjeab7ZEjliTCpca1oOnbT</p>
         <h1>Privacy Policy</h1>
         <p>Your privacy is important to us. This policy details how our automated service interacts with user data.</p>
         <h3>1. Data We Receive</h3>
