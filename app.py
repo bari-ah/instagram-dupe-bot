@@ -23,13 +23,17 @@ def handle_tiktok_events():
     print("Received webhook event:", data)
     return jsonify({"status": "success"}), 200
 
-# 4. Terms of Service Page (For TikTok App Review)
+# 4. Terms of Service Page (With TikTok Verification)
 @app.route('/terms', methods=['GET'])
 def terms_of_service():
     return """
     <html>
-    <head><title>Terms of Service</title></head>
+    <head>
+        <title>Terms of Service</title>
+        <!-- tiktok-developers-site-verification=KDLcbFzR3QjRYcYdQIigJOB2Fgiz4WSm -->
+    </head>
     <body style="font-family: Arial, sans-serif; margin: 40px; line-height: 1.6;">
+        <p style="color: #ccc; font-size: 10px;">tiktok-developers-site-verification=KDLcbFzR3QjRYcYdQIigJOB2Fgiz4WSm</p>
         <h1>Terms of Service</h1>
         <p>Welcome to DupeBot Backend. By interacting with our automated TikTok service, you agree to these basic terms.</p>
         <h3>1. Service Description</h3>
@@ -42,13 +46,17 @@ def terms_of_service():
     </html>
     """, 200
 
-# 5. Privacy Policy Page (For TikTok App Review)
+# 5. Privacy Policy Page (With TikTok Verification)
 @app.route('/privacy', methods=['GET'])
 def privacy_policy():
     return """
     <html>
-    <head><title>Privacy Policy</title></head>
+    <head>
+        <title>Privacy Policy</title>
+        <!-- tiktok-developers-site-verification=KDLcbFzR3QjRYcYdQIigJOB2Fgiz4WSm -->
+    </head>
     <body style="font-family: Arial, sans-serif; margin: 40px; line-height: 1.6;">
+        <p style="color: #ccc; font-size: 10px;">tiktok-developers-site-verification=KDLcbFzR3QjRYcYdQIigJOB2Fgiz4WSm</p>
         <h1>Privacy Policy</h1>
         <p>Your privacy is important to us. This policy details how our automated service interacts with user data.</p>
         <h3>1. Data We Receive</h3>
